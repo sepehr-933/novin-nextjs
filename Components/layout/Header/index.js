@@ -4,7 +4,6 @@ import Buttonx from "../../shared/Button";
 import search from '../../../public/Assets/png/icon search.png';
 import Animated from "react-mount-animation";
 import ImageBox from "../../shared/ImageBox";
-import bgHeader from '../../../public/Assets/png/bg header.png';
 import Background from "../../shared/ImageBox/Background";
 
 const Header = ({background}) => {
@@ -46,8 +45,8 @@ const Header = ({background}) => {
                     100% {opacity: 0}
                 `}
                 unmountDelay={0.3}
-                style={{backgroundColor:"rgba(0,0,0,0.6)"}}
-                className="fixed top-0 left-0 w-full h-full block z-19"></Animated.div>
+                style={{backgroundColor:"rgba(0,0,0,0.6)",zIndex:"20"}}
+                className="fixed top-0 left-0 w-full h-full block"></Animated.div>
 
             {/*responsive part*/}
             <Animated.div
@@ -101,7 +100,7 @@ const Header = ({background}) => {
             {/*responsive part*/}
             {/*desktop*/}
             {/*background image*/}
-             <Background src={bgHeader} alt="header background" classes="top-0 left-0 w-5/4 header-res"/>
+             <Background src={background} alt="header background" classes="top-0 left-0 w-5/4 header-res"/>
 
             <div className="flex  mb-12">
                 <ImageBox src={logo} alt="logo" classes="w-12 mr-lf-xs"/>
