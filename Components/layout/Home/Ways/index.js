@@ -5,6 +5,7 @@ import frontend from '../../../../public/Assets/png/front end.png';
 import mobile from '../../../../public/Assets/png/mobile.png';
 import Buttonx from "../../../shared/Button";
 import ImageBox from "../../../shared/ImageBox";
+import Link from "next/link";
 
 const Ways = () => {
   return (
@@ -30,7 +31,11 @@ const Ways = () => {
               <div className="flex flex-col justify-between mobile:mobile-container items-center  normal-shadow rounded-xl py-8 px-16">
                   <ImageBox src={mobile} alt="backend" classes="ways-images-mob" ImageClasses=""/>
                   <Buttonx classes="buttonxxx">
-                      متخصص mobile شو
+                      <Link href="/mobile">
+                          <a>
+                              متخصص mobile شو
+                          </a>
+                      </Link>
                   </Buttonx>
               </div>
               <div className="flex flex-col items-center justify-between  normal-shadow rounded-xl p-8">
