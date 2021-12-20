@@ -114,7 +114,7 @@ const MainLessons = () => {
             <div className="normal-shadow mb-24 mobile:mb-60 rounded-3xl relative bg-white grid gap-24 grid-cols-1 mobile:grid-cols-3 mobile:pr-32 p-8">
                 <ImageBox src={progress2} alt="progress" classes="absolute top-1/2 left-0 w-28 -translate-y-1/2 -translate-x-1/2"/>
                 <ImageBox src={line2} alt="line1" classes="hidden mobile:block absolute -bottom-[28rem] translate-x-12 w-[107%]"/>
-                <div className="mobile:col-start-2 mobile:col-end-4 px-8">
+                <div className="mobile:col-start-1 mobile:col-end-3 px-8">
                     <h1 className="font-bold text-4xl mb-12 flex">
                         مفاهیم
                         <p className="text-secondary">
@@ -187,7 +187,7 @@ const MainLessons = () => {
                         </div>
                     </div>
                 </div>
-                <ImageBox src={img2} alt="baby" classes="mobile:col-start-1 flex  justify-center mobile:col-end-2 ml-8"/>
+                <ImageBox src={img2} alt="baby" classes="mobile:col-start-3 flex  justify-center mobile:col-end-4 ml-8"/>
             </div>
             {/*card3*/}
             <div className="normal-shadow mb-24 mobile:mb-60 rounded-3xl relative bg-white grid gap-24 grid-cols-1 mobile:grid-cols-3 mobile:pr-32 p-8">
@@ -272,7 +272,7 @@ const MainLessons = () => {
             <div className="normal-shadow mb-24 mobile:mb-60 rounded-3xl relative bg-white grid gap-24 grid-cols-1 mobile:grid-cols-3 mobile:pr-32 p-8">
                 <ImageBox src={progress4} alt="progress" classes="hidden mobile:block absolute top-1/2 left-0 w-28 -translate-y-1/2 -translate-x-1/2"/>
                 <ImageBox src={line4} alt="line1" classes="absolute -bottom-[28rem] translate-x-12 w-[107%]"/>
-                <div className="mobile:col-start-2 mobile:col-end-4 px-8">
+                <div className="mobile:col-start-1 mobile:col-end-3 px-8">
                     <h1 className="font-bold text-4xl mb-12 flex">
                         مفاهیم
                         <p className="text-secondary">
@@ -345,7 +345,7 @@ const MainLessons = () => {
                         </div>
                     </div>
                 </div>
-                <ImageBox src={img4} alt="baby" classes="mobile:col-start-1 flex  justify-center mobile:col-end-2 ml-8"/>
+                <ImageBox src={img4} alt="baby" classes="mobile:col-start-3 flex  justify-center mobile:col-end-4 ml-8"/>
             </div>
             {/*card5*/}
             <div className="normal-shadow mb-24 mobile:mb-60 rounded-3xl relative bg-white grid gap-24 grid-cols-1 mobile:grid-cols-3 mobile:pr-32 p-8">
