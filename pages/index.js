@@ -1,6 +1,6 @@
 import React from 'react';
 import Path from "../Components/layout/Home/Path";
-import support from "../../../novin/src/Assets/png/icon support.png";
+import support from "../public/Assets/png/icon support.png";
 import ImageBox from "../Components/shared/ImageBox";
 import Ways from "../Components/layout/Home/Ways";
 import Consult from "../Components/layout/Home/Consult";
