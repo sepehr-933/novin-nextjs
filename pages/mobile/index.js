@@ -1,7 +1,7 @@
 import React from 'react';
 import Specialist from "../../Components/layout/Mobile/Specialist";
 import ImageBox from "../../Components/shared/ImageBox";
-import support from "../../../../novin/src/Assets/png/icon support.png";
+import support from "../../public/Assets/png/icon support.png";
 import MainLessons from "../../Components/layout/Mobile/MainLessons";
 import Consult from "../../Components/layout/Mobile/Consult";
 import Comments from "../../Components/layout/Mobile/Comments";

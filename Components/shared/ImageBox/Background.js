@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from "next/image";
 
+
 const Background = ({src, classes, alt,style}) => {
     return (
         <div className={`${classes} absolute -z-10`}>

@@ -8,16 +8,24 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from "../Components/layout/Footer";
 import mobileBackground from '../public/Assets/png-mob/bg.png';
+import {QueryClientProvider, QueryClient} from "react-query";
+import {Provider} from "react-redux";
+import store from "../store";
 
 function MyApp({ Component, pageProps }) {
     const router = useRouter();
     const bgPng = router.pathname === '/' ? background : mobileBackground;
+    const client = new QueryClient();
   return (
-      <div>
-          <Header background={bgPng} />
-        <Component {...pageProps} />
-        <Footer />
-      </div>
+      <QueryClientProvider client={client}>
+          <Provider store={store}>
+              <div>
+                  <Header background={bgPng} />
+                  <Component {...pageProps} />
+                  <Footer />
+              </div>
+          </Provider>
+      </QueryClientProvider>
       )
 }
 
