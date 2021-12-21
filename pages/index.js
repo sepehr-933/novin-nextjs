@@ -37,15 +37,20 @@ const Home = () => {
                 <Ways />
             <Consult />
                 <Comments />
-                <div className="container-large">
-                    {data.map(user => {
-                        return (
-                            <div className="font-bold text-primary text-3xl mb-8">
-                                {user.username}
-                            </div>
-                        );
-                    })}
-                </div>
+            {
+                isLoading ? <div>loading...</div>
+                    :
+                    <div className="container-large">
+                        {data.map(user => {
+                            return (
+                                <div className="font-bold text-primary text-3xl mb-8">
+                                    {user.username}
+                                </div>
+                            );
+                        })}
+                    </div>
+            }
+
             <div className="container-large flex py-64 flex-col text-secondary items-center justify-center bg-light__gray rounded-2xl">
                 <h2 className="font-bold text-3xl mb-8">
                     count : {count}
