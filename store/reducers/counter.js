@@ -7,12 +7,18 @@ const counter = createSlice({
     name:'counter',
     reducers : {
         minus(state, action) {
-          state.count -= 1
+            action.payload === 0 ?
+          state.count -= 1 :
+                state.count -= action.payload
+            console.log(action);
         },
         plus(state, action) {
-            state.count += 1
-        }
+            action.payload === 0 ?
+                state.count += 1 :
+                state.count += action.payload
+            console.log(action);
+        },
     }
 });
-export const {minus, plus} = counter.actions;
+export const {minus, plus,increment_Async} = counter.actions;
 export default counter.reducer;
