@@ -4,6 +4,11 @@ import mobile from '../../../public/Assets/png/icon mobile.png';
 import atsign from '../../../public/Assets/png/@.png'
 import Buttonx from "../../shared/Button";
 import FooterBg from '../../../public/Assets/png/bg footer.png'
+import {useForm} from "react-hook-form";
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import {useMutation} from "react-query";
+import {postForm} from '../../../gate/index';
 //social icons
 import whatsapp from '../../../public/Assets/png/whatsapp.png'
 import telegram from '../../../public/Assets/png/telegram.png'
@@ -12,12 +17,25 @@ import linkedin from '../../../public/Assets/png/linkedin.png'
 import instagram from '../../../public/Assets/png/insta.png'
 import ImageBox from "../../shared/ImageBox";
 import Background from "../../shared/ImageBox/Background";
+import {error} from "next/dist/build/output/log";
 
 const Footer = () => {
-    const [windowSize, setWindowSize] = useState();
-    useEffect(() => {
-        setWindowSize(window.innerWidth);
+    //configuring form inputs
+    const schema = yup.object({
+        email: yup.string().email().required(),
+        phone: yup.number().positive().integer().required(),
+    }).required();
+    //handling form
+    const {register,handleSubmit, formState: {errors}} = useForm({
+        resolver : yupResolver(schema)
     });
+    //mutating data
+    const mutation = useMutation(newTodo => {
+        return postForm(newTodo);
+    });
+    const onSubmit = data => {
+        mutation.mutate(data);
+    };
     return (
         <div className="px-20 pb-20 footer-padding relative overflow-hidden">
             <Background src={FooterBg} alt="footer" classes="absolute left-0 footer-bg"/>
@@ -35,23 +53,27 @@ const Footer = () => {
                     از قدیمی‌ترین وب‌سایت‌های یادگیری آنلاین است که توانسته طی بیش از ده سال فعالیت خود بالغ بر ۱۳۰۰۰ ساعت آموزش ویدیویی در قالب فراتر از ۲۰۰۰ع
                     عنوان علمی، مهارتی و کاربردی را منتشر کند و به بزرگترین پلتفرم آموزشی ایران مبدل شود.
                 </p>
-                <div className='flex mobile:flex-row flex-col items-center mb-20'>
-                    <div className=" mobile:-translate-x-11 flex mb-8 mobile:mb-0">
-                        <div className="bg-light__gray2 translate-y-1 -translate-x-14 h-max p-2 rounded-xl footer-icon__mobile">
-                            <ImageBox src={mobile} alt="mobile" classes="w-7 "/>
+                <form onSubmit={handleSubmit(onSubmit)} className='flex mobile:flex-row flex-col items-center mb-20'>
+                        <div className=" mobile:-translate-x-11 flex mb-8 mobile:mb-0">
+                            <div className="bg-light__gray2 translate-y-1 -translate-x-14 h-max p-2 rounded-xl footer-icon__mobile">
+                                <ImageBox src={mobile} alt="mobile" classes="w-7 "/>
+                            </div>
+                            <input {...register("phone")} style={{borderRadius:"0 8px 8px 0"}} className="pr-20 py-5 pl-60 footer-input" placeholder="شماره موبایل شما"/>
                         </div>
-                        <input style={{borderRadius:"0 8px 8px 0"}} className="pr-20 py-5 pl-60 footer-input" placeholder="شماره موبایل شما"/>
-                    </div>
-                    <div className=""></div>
-                    <div className="flex mb-8 mobile:mb-0">
-                        <div className="bg-light__gray2 translate-y-1 -translate-x-14 h-max px-2 rounded-xl footer-icon__atsign">
-                            <ImageBox src={atsign} alt="atsign" classes="w-6"/>
+
+                        <div className="flex mb-8 mobile:mb-0">
+                            <div className="bg-light__gray2 translate-y-1 -translate-x-14 h-max px-2 rounded-xl footer-icon__atsign">
+                                <ImageBox src={atsign} alt="atsign" classes="w-6"/>
+                            </div>
+                            <input {...register("email")} style={{borderRadius:"0 0 0 0"}} className="footer-input py-5 pr-20 pl-60" placeholder="ایمیل شما"/>
                         </div>
-                        <input style={{borderRadius:"0 0 0 0"}} className="footer-input py-5 pr-20 pl-60" placeholder="ایمیل شما"/>
-                    </div>
-                    <Buttonx classes={`rounded-tr-xl rounded-br-xl mobile:rounded-tr-none mobile:rounded-br-none w-max`}>
+                    <Buttonx type="submit" classes={`rounded-tr-xl rounded-br-xl mobile:rounded-tr-none mobile:rounded-br-none w-max`}>
                         عضویت در خبرنامه
                     </Buttonx>
+                </form>
+                <div className="text-xl text-secondary flex w-3/4 mx-auto">
+                    <p className="text-red w-3/4">{errors?.phone?.message}</p>
+                    <p className="text-red  w-3/4">{errors?.email?.message}</p>
                 </div>
                 <div className="flex justify-between mobile:flex-row flex-col items-center">
                     <div className="footer-links mb-8 mobile:mb-0">

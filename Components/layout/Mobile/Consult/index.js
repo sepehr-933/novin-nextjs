@@ -1,7 +1,7 @@
 import React from 'react';
 import image from '../../../../public/Assets/png/IMAGE 2.png';
-import counter from '../../../../public/Assets/png/icon counter.png';
 import phone from '../../../../public/Assets/png/icon phone.png';
+import user from '../../../../public/Assets/png/icon user.png';
 import Buttonx from "../../../shared/Button";
 import ImageBox from "../../../shared/ImageBox";
 
@@ -21,7 +21,7 @@ const Consult = () => {
                     <div>
                         <div className="flex mb-4  translate-x-12">
                             <div className="bg-light__gray2  rounded-xl px-3 py-1 h-max consult-icon">
-                                <ImageBox src={counter} alt="counter" classes="w-7 "/>
+                                <ImageBox src={user} alt="user" classes="w-7 "/>
                             </div>
                             <input placeholder="نام و نام خانوادگی" className="py-6 pl-24 consult-input border-solid border-dark__gray mobile:w-1/2 border-2 pr-20 rounded-xl "/>
                         </div>

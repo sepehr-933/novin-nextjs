@@ -11,10 +11,11 @@ import mobileBackground from '../public/Assets/png-mob/bg.png';
 import {QueryClientProvider, QueryClient} from "react-query";
 import {Provider} from "react-redux";
 import store from "../store";
+import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp({ Component, pageProps }) {
     const router = useRouter();
-    const bgPng = router.pathname === '/' ? background : mobileBackground;
+    const bgPng = (router.pathname === '/' || router.pathname === '/git') ? background : mobileBackground;
     const client = new QueryClient();
   return (
       <QueryClientProvider client={client}>

@@ -5,9 +5,16 @@ import search from '../../../public/Assets/png/icon search.png';
 import Animated from "react-mount-animation";
 import ImageBox from "../../shared/ImageBox";
 import Background from "../../shared/ImageBox/Background";
+import {useForm} from "react-hook-form";
 
 const Header = ({background}) => {
     const [showMenu, setShowMenu] = useState(false);
+    //form information
+    const {handleSubmit,register} = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+    }
+    //rest
     const [activeIndex, setActiveIndex] = useState(0);
     const menuItems = [
         {item: "صفحه اصلی"},
@@ -132,8 +139,12 @@ const Header = ({background}) => {
                         )
                     })
                 }
-                <ImageBox src={search} alt="search" classes="bg-primary rounded-tr-xl rounded-br-xl mr-auto w-12 p-1"/>
-                <input placeholder="چی میخوای یاد بگیری..." className="px-8 focus:outline-none py-4 rounded-tl-xl rounded-bl-xl bg-white"/>
+
+                <form className="flex" onSubmit={handleSubmit(onSubmit)}>
+                    <input style={{textIndent:'-700px'}} type="submit" className="bg-transparent w-12 -translate-x-12 z-10 text-transparent"/>
+                    <ImageBox src={search} alt="search" classes="bg-primary rounded-tr-xl rounded-br-xl mr-auto w-12 p-1"/>
+                    <input {...register("search",{required:true})}  placeholder="چی میخوای یاد بگیری..." className="px-8 focus:outline-none py-4 rounded-tl-xl rounded-bl-xl bg-white"/>
+                </form>
             </div>
         </div>
     );

@@ -1,37 +1,58 @@
-import { all, fork } from 'redux-saga/effects';
-import { put, takeEvery,call } from 'redux-saga/effects';
-import {fetchUsers} from "../reducers/getUsers";
-import {useQuery} from "react-query";
+import { all, } from 'redux-saga/effects';
+import { put, takeLatest,call,takeEvery } from 'redux-saga/effects';
+import {fetchUsers,fetchUsersSuccess,fetchUsersFail} from "../reducers/users";
+import {fetchUser,fetchUserFail,fetchUserSuccess} from '../reducers/getUserById'
 import axios from "axios";
-
+import {client} from "../../gate/api";
 
 // ...
-const url = 'https://jsonplaceholder.typicode.com/users'
-const requestUser = axios.get(url);
+const requestUsers = client.get('/users');
 // Our worker Saga: will perform the async increment task
 export function* getData() {
+    const request = yield call(() => requestUsers)
     try {
-        const request = yield call(requestUser)
-        const {data} = request
-        yield put(fetchUsers(data))
-        console.log('aa',data);
+        yield put({
+            payload : { data : request.data },
+            type : fetchUsersSuccess.type ,
+        });
     }
     catch (err) {
-        console.log(err)
+        yield put({
+            payload : {error : err},
+            type : fetchUsersFail.type
+        });
+    }
+}
+export function* getUserData(action) {
+    console.log('action',action);
+    const requestUser = client.get(`/users/${action.payload.id}`)
+    const request = yield call(() => requestUser);
+    console.log('req',request);
+
+    try {
+        yield put({
+            payload : { user : request.data },
+            type : fetchUserSuccess.type,
+        });
+    }
+    catch (err) {
+        yield put({
+            payload : {error : err},
+            type : fetchUserFail.type,
+        });
     }
 }
 
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
-export function* watchGetData() {
-    yield takeEvery(fetchUsers().type, getData)
-}
-
 
 export default function* rootSaga() {
     yield all([
-        watchGetData()
+        takeLatest(fetchUsers.type,getData),
+        takeLatest(fetchUser.type, getUserData)
     ])
 }
+
+
 
 
 
